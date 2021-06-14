@@ -4,7 +4,7 @@ public class Board {
 	String title;
 	String contents;
 	String writer;
-	String create;
+	String createDate;
 	public Board() {}
 
 }

@@ -26,61 +26,77 @@ public class Test01 {
 		
 		
 		
-		List<String> list3 = new ArrayList<String>();
-		List<String> list4 = new LinkedList();
+		// 1. 선언
+		List<user> list = new Vector<>();
+			// 인터페이스 : 추상메소드[ 정의하지 않는 메소드 ] : 클래스 메모리할당 필요
+				// 인터페이스 혼자서 할수있는 기능 X
+		Vector<user> list2 = new Vector<>();
+			// < > 제네릭 :  해당 클래스에 클래스 넣기 
+		// 2. 메소드
+		user user = new user(); // 객체 생성 
+		list.add( user );
+				// <클래스>의 객체 
+		list.add( new user() ); // 중복허용 
+		
+		list.remove(0);	// 첫번째 객체 삭제 
+		System.out.println( list.size() ); // 리스트내 객체수 
+		
+		for( user temp : list ) {
+					// list내 객체가 하나씩 temp 대입
+			System.out.println( temp );
+		}
+		
+		//
+		List< String > list3 = new ArrayList<String>();
+		List< String > list4 = new LinkedList<>();	
 		
 		Long 시작;
 		Long 끝;
-		시작 = System.nanoTime();
-		for(int i = 0; i<10000; ++i) {
-			list3.add(0, String.valueOf(i));
-						//StringvalueOf(숫자) => 문자
-			
+		
+		시작 = System.nanoTime(); // 현재 시간[나노] 메소드 
+		for( int i = 0 ; i<10000 ; i++ ) {
+			list3.add( 0 , String.valueOf(i));
+							// String.valueOf(숫자) => 문자 
 		}
 		끝 = System.nanoTime();
-		System.out.println("어레이리스트 10000개 삽입 걸린시간 : " + (끝 - 시작) + "ns");
+		System.out.println(" arraylist 10000개 삽입 걸린시간 : "  + (끝-시작) +"ns" );
 		
-
-		시작 = System.nanoTime(); // 현재 시간[나노] 메소드
-		for(int i = 0; i<10000; ++i) {
-			list4.add(0, String.valueOf(i));
-						// String.valueOf(숫자) => 문자
-			
+		시작 = System.nanoTime(); // 현재 시간[나노] 메소드 
+		for( int i = 0 ; i<10000 ; i++ ) {
+			list4.add( 0 , String.valueOf(i));
+							// String.valueOf(숫자) => 문자 
 		}
 		끝 = System.nanoTime();
-		System.out.println("링크드리스트 10000개 삽입 걸린시간 : " + (끝 - 시작) + "ns");
+		System.out.println(" LinkedList 10000개 삽입 걸린시간: "  + (끝-시작) +"ns" );
 		
 		
-		// HashSet 클래스
-		//1 . 선언
-		Set<String> set = new HashSet<>();
-		HashSet<String> set2 = new HashSet<>();
+		// HashSet 클래스 
+		//1.선언 
+		Set<String > set = new HashSet<>();
+		HashSet<String > set2 = new HashSet<>();
 		
-		//2. 메소드
+		//2. 메소드 
 		set.add("java");
-		set.add("java"); // 중복 제거
+		set.add("java"); // 중복제거  
 		set.add("c");
 		set.add("database");
-		System.out.println("set의 객체수 : " + set.size());
+		System.out.println(" set의 객체수 : "+ set.size());
+		set.remove("c"); // 객체 삭제 
+		System.out.println(" set의 객체수 : "+ set.size());
 		
-		//삭제
-		set.remove("c"); // 객체 삭제
-		System.out.println("set의 객체수 : " + set.size());
-		
-		//
-		for (String temp : set) {
-			System.out.println(temp);
+		for( String temp : set ) {
+			System.out.println( temp );
 		}
-		// get ???? ==> Iterator  인터페이스
+		
+		// get ???? -----> Iterator 인터페이스 
 		Iterator<String> iterator = set.iterator();
-		 // Iterator : 순서 없는 컬렉션에 모든 객체 순회 인터페이스
-				// null 부터 시작 next() 메소드로 다음으로 이동
-		while(iterator.hasNext()) {
-				// hasNext() : 다음 요소가 이쓴ㄴ지 여부 확인 T/F
-			String temp = iterator.next(); // 다음 요소 호출
-			System.out.println(temp);
+			// Iterator : 순서 없는 컬렉션에 모든 객체 순회 인터페이스 
+				// null 부터 시작 next() 메소드로 다음으로 이동 
+		while( iterator.hasNext() ) {
+					// hasNext() : 다음 요소가 있는지 여부 확인 T / F
+			String temp = iterator.next(); // 다음 요소 호출 
+			System.out.println( temp );
 		}
 		set.clear();
-		
-	}
 }	
+}
